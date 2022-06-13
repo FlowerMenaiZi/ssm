@@ -1,0 +1,46 @@
+spring:
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql:///hsp_db02?useSSL=false
+      username: root
+      password: 123456
+  profiles:
+    active: dev
+
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: false   #取消驼峰自动转下划线
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+#应用环境
+
+#设置环境
+#生产环境
+---
+server:
+  port: 80
+spring:
+  config:
+    activate:
+      on-profile: pro
+
+---
+#开发环境
+server:
+  port: 81
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+---
+#测试环境
+server:
+  port: 82
+spring:
+  config:
+    activate:
+      on-profile: test
